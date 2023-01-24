@@ -1,0 +1,18 @@
+name: Workflow to update the transform event library package.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - feature/**
+jobs:
+  demo-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Demo step 1
+        run: |
+          printf 'github.event.action=%s\n' "${{ github.event.action }}"
+          printf 'github.ref=%s\n' "${{ github.ref }}"
+          printf 'github.head_ref=%s\n' "${{ github.head_ref }}"
+          printf 'github.ref_name=%s\n' "${{ github.ref_name }}"
+          printf 'branch=%s\n' "${{ github.head_ref || github.ref_name }}"

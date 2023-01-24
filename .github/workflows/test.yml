@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Demo step 1
         run: |
+          printf 'github.event_name=%s\n' "${{ github.event_name }}"
           printf 'github.event.action=%s\n' "${{ github.event.action }}"
           printf 'github.ref=%s\n' "${{ github.ref }}"
           printf 'github.head_ref=%s\n' "${{ github.head_ref }}"

@@ -6,10 +6,25 @@ on:
       - main
       - feature/**
 jobs:
-  demo-job:
+  demo-job-1:
     runs-on: ubuntu-latest
+    environment: foo
     steps:
-      - name: Demo step 1
+      - name: demo-job-1.step-1
+        run: |
+          printf 'github.event_name=%s\n' "${{ github.event_name }}"
+          printf 'github.event.action=%s\n' "${{ github.event.action }}"
+          printf 'github.ref=%s\n' "${{ github.ref }}"
+          printf 'github.head_ref=%s\n' "${{ github.head_ref }}"
+          printf 'github.ref_name=%s\n' "${{ github.ref_name }}"
+          printf 'branch=%s\n' "${{ github.head_ref || github.ref_name }}"
+  demo-job-2:
+    runs-on: ubuntu-latest
+    environment: bar
+    needs:
+      - demo-job-1
+    steps:
+      - name: demo-job-2.step-1
         run: |
           printf 'github.event_name=%s\n' "${{ github.event_name }}"
           printf 'github.event.action=%s\n' "${{ github.event.action }}"

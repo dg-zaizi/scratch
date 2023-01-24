@@ -1,4 +1,4 @@
-name: Workflow to update the transform event library package.
+name: Just a demo workflow
 on:
   workflow_dispatch:
   push:
